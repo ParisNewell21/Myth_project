@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Story</title>
+</head>
+<body>
+    <h1>New Creature Story</h1>
+    <form action="/add/creature" method="POST" class="in_tv">
+        {% with messages = get_flashed_messages(category_filter=['stop']) %}
+            {% if messages %}
+            <div role="alert">
+                <strong>ERROR</strong>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        <div>
+        <div class="left">
+            <div>
+                <label for="Story">Add Story</label>
+            </div>
+            <div>
+                <input type="text" name="Story">
+            </div>
+        </div>
+    </form>
+</body>
+</html>

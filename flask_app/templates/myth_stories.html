@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title></title>
+</head>
+<body>
+    <div class="top_text">
+        <div class="logo">
+            <h1>Shows To Check Out</h1>
+        </div>
+        <div class="name">
+            <h2>Welcome! {{user.first_name}}</h2>
+            <div class="links">
+                <a href="/new/Show">add show</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+    <h3>DASHBOARD</h3>
+    <table>
+        <tablehead>
+            <th>Show Name</th>
+            <th>Network</th>
+            <th>Release Date</th>
+            <th>More</th>
+        </tablehead>
+        <tablebody>
+            {% for seen in all_shows %}
+            <tr>
+                <td>{{seen.show_name}}</td>
+                <td>{{seen.network}}</td>
+                <td>{{seen.release_date}}</td>
+                <td>
+                    <a href="/showtime/{{seen.id}}">Info</a>
+                    {% if session['user_id'] == seen.watcher.id %}
+                    <a href="/Show/delete/{{seen.id}}">Delete</a>
+                    <a href="/edit/{{seen.id}}">Edit</a>
+                </td>
+                {% endif %}
+            </tr>
+            {%endfor%}
+        </tablebody>
+    </table>
+</body>
+</html>
